@@ -1,0 +1,61 @@
+<main class="main-container">
+
+    <h1 class="ff-secondary">Real time list products</h1>
+
+    <section class="productPage-container">
+        <section class="productsForm-section">
+
+            <form class="form-section" method="post">
+                <input name="title" placeholder="Title" required />
+                <input name="description" placeholder="Description" required />
+                <br/><br/>
+                <input name="code" placeholder="Code" required />
+                <input name="price" placeholder="Price" required />
+                <br/><br/>
+                <input name="status" placeholder="Status" required />
+                <input name="stock" placeholder="Stock" required />
+                <br/><br/>
+                <input name="category" placeholder="Category" required />
+                <input name="thumbnails" placeholder="Thumbnails" required />
+                <br/><br/>
+                <button class="btn-success ff-secondary fs-3" type="submit">
+                    {{#if selectedProduct}}
+                    Update
+                    {{else}}
+                    Create
+                    {{/if}}
+                </button>
+            </form>
+        </section>
+
+
+        <section class="products-section">
+            <ul class="products-list">
+                {{#each products}}
+                <li class='product-item' data-id='{{this._id}}'>
+
+                    <div class='product-item__body'>
+                        <p class='ff-secondary fs-2 ls-1'>{{this.title}}</p>
+                        <p>{{this.category}}</p>
+                        <p>{{this.shortDescription}}</p>
+                        <p>Price: {{this.price}}</p>
+                    </div>
+
+                    <div class='product-item__buttons'>
+                        <button class='btn-edit ff-secondary fs-2'>
+                            Edit
+                        </button>
+                        <button class='btn-delete ff-secondary fs-2'>
+                            Delete
+                        </button>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+        </section>
+    </section>
+</main>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/realTimeProducts.js"></script>
+
